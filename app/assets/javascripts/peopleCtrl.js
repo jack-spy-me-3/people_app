@@ -2,10 +2,12 @@
 (function() {
   "use strict";
 
-  angular.module("app").controller("peopleCtrl", function($scope) {
-    $scope.people = [{name: "Steve Harvey", bio: "always screws up", bioVisible: false},
-                      {name: "Oscar", bio: "Awards guy", bioVisible: false},
-                      {name: "Lala Land", bio: "Not the winner. Also not winter.", bioVisible: false}];
+  angular.module("app").controller("peopleCtrl", function($scope, $http) {
+    $scope.setup = function() {    
+      $http.get("/api/v1/people.json").then(function(response) {
+        $scope.people = response.data;
+      });
+    };
 
     $scope.toggleBio = function(person) {
       person.bioVisible = !person.bioVisible;
@@ -18,6 +20,12 @@
         $scope.inputName = null;
         $scope.inputBio = null;
       }
+    };
+
+    $scope.purpleHippo = function() {
+      var count = 0;
+
+      return count;
     };
 
     $scope.killPerson = function(index) {
