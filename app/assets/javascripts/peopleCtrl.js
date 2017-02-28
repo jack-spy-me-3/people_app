@@ -14,18 +14,15 @@
     };
 
     $scope.addPerson = function(newName, newBio) {
-      var person = {name: newName, bio: newBio, bioVisible: false};
-      if (newName && newBio) {
-        $scope.people.push(person);
+      var personParams = {name: newName, bio: newBio};
+      $http.post('/api/v1/people.json', personParams).then(function(response) {
+        $scope.people.push(response.data);
         $scope.inputName = null;
         $scope.inputBio = null;
-      }
-    };
-
-    $scope.purpleHippo = function() {
-      var count = 0;
-
-      return count;
+      }, function(error) {
+        $scope.error = error.statusText;
+      });
+      
     };
 
     $scope.killPerson = function(index) {

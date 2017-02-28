@@ -3,11 +3,10 @@
     <h1>Number of Awesome: {{ people.length }}</h1>
     <div ng-repeat="person in people track by $index">
       <p ng-click="toggleBio(person)">{{ person.name }}</p>
-<!--       <p ng-if="person.bioVisible">{{ person.bio }}</p>
- -->      <p ng-class="{purpleHippo: person.bioVisible}">{{ person.bio }}</p>
+       <p ng-class="{purpleHippo: person.bioVisible}">{{ person.bio }}</p>
       <button ng-click="killPerson($index)">Delete this Person</button>
     </div>
-    {{ purpleHippo() }}
+
     <p>Name: <input ng-model="inputName"></p>
     <p>Bio: <input ng-model="inputBio"></p>
     <button ng-click="addPerson(inputName, inputBio)">Add Person</button>
