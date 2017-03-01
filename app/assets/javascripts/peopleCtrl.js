@@ -9,20 +9,21 @@
       });
     };
 
-    $scope.toggleBio = function(person) {
-      person.bioVisible = !person.bioVisible;
-    };
-
     $scope.addPerson = function(newName, newBio) {
       var personParams = {name: newName, bio: newBio};
-      $http.post('/api/v1/people.json', personParams).then(function(response) {
+      $http.post("/api/v1/people.json", personParams).then(function(response) {
         $scope.people.push(response.data);
         $scope.inputName = null;
         $scope.inputBio = null;
+        $scope.errors = null;
       }, function(error) {
-        $scope.error = error.statusText;
+        $scope.errors = error.data.errors;
       });
       
+    };
+
+    $scope.toggleBio = function(person) {
+      person.bioVisible = !person.bioVisible;
     };
 
     $scope.killPerson = function(index) {
