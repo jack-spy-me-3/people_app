@@ -3,15 +3,25 @@
     <h1>Number of Awesome: {{ people.length }}</h1>
     <input ng-model="filterName">
     <input ng-model="filterBio">
-    <div>
-      <button ng-click="toggleOrder('name')">Order By Name</button>
-      <button ng-click="toggleOrder('bio')">Order By Bio</button>
-    </div>
-    <div ng-repeat="person in people | filter: { name: filterName, bio: filterBio } | orderBy:orderAttribute:isDescending">
+<!--     <div>
+      <button>Order By Name</button>
+      <button >Order By Bio</button>
+    </div> -->
+    <table>
+      <tr>
+        <th ng-click="toggleOrder('name')">Name {{ sortArrow('name')}}</th>
+        <th ng-click="toggleOrder('bio')">Bio {{ sortArrow('bio')}}</th>
+      </tr>
+      <tr ng-repeat="person in people | filter: { name: filterName, bio: filterBio } | orderBy:orderAttribute:isDescending">
+        <td>{{ person.name }}</td>
+        <td>{{ person.bio }}</td>
+      </tr>
+    </table>
+<!--     <div ng-repeat="person in people | filter: { name: filterName, bio: filterBio } | orderBy:orderAttribute:isDescending">
       <p ng-click="toggleBio(person)">{{ person.name }}</p>
        <p ng-class="{purpleHippo: person.bioVisible}">{{ person.bio }}</p>
       <button ng-click="killPerson(person)">Delete this Person</button>
-    </div>
+    </div> -->
     <ul>
       <li ng-repeat="error in errors">{{ error }}</li>
     </ul>
