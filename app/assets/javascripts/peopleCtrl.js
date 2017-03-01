@@ -23,13 +23,34 @@
       
     };
 
+    $scope.updatePerson = function(updatedName, updatedBio, person) {
+      var personParams = {name: updatedName, bio: updatedBio};
+      $http.patch("/api/v1/people/" + person.id + ".json", personParams).then(function(response) {
+        var index = $scope.people.indexOf(person);
+        $scope.people[index] = response.data;
+        $scope.updateName = null;
+        $scope.updateBio = null;
+        $scope.errors = null;
+      }, function(error) {
+        console.log(error);
+        $scope.errors = error.data.errors;
+      });
+      
+    };
+
     $scope.toggleBio = function(person) {
       person.bioVisible = !person.bioVisible;
     };
 
     $scope.killPerson = function(person) {
       var index = $scope.people.indexOf(person);
-      $scope.people.splice(index, 1);
+      $http.delete("/api/v1/people/" + person.id + ".json").then(function(response) {
+        $scope.errors = null;
+        $scope.people.splice(index, 1);
+      }, function(error) {
+        console.log(error);
+        $scope.errors = error.data.errors;
+      });
     };
 
     $scope.toggleOrder = function(attribute) {
