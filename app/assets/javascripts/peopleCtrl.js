@@ -17,6 +17,7 @@
         $scope.inputBio = null;
         $scope.errors = null;
       }, function(error) {
+        console.log(error);
         $scope.errors = error.data.errors;
       });
       
@@ -26,8 +27,18 @@
       person.bioVisible = !person.bioVisible;
     };
 
-    $scope.killPerson = function(index) {
+    $scope.killPerson = function(person) {
+      var index = $scope.people.indexOf(person);
       $scope.people.splice(index, 1);
+    };
+
+    $scope.toggleOrder = function(attribute) {
+      if (attribute !== $scope.orderAttribute) {
+        $scope.isDescending = false;
+      } else {
+        $scope.isDescending = !$scope.isDescending;
+      }
+      $scope.orderAttribute = attribute;
     };
     
     window.$scope = $scope;

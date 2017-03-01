@@ -1,10 +1,16 @@
 <div ng-app="app">
   <div ng-controller="peopleCtrl" ng-init="setup()">
     <h1>Number of Awesome: {{ people.length }}</h1>
-    <div ng-repeat="person in people track by $index">
+    <input ng-model="filterName">
+    <input ng-model="filterBio">
+    <div>
+      <button ng-click="toggleOrder('name')">Order By Name</button>
+      <button ng-click="toggleOrder('bio')">Order By Bio</button>
+    </div>
+    <div ng-repeat="person in people | filter: { name: filterName, bio: filterBio } | orderBy:orderAttribute:isDescending">
       <p ng-click="toggleBio(person)">{{ person.name }}</p>
        <p ng-class="{purpleHippo: person.bioVisible}">{{ person.bio }}</p>
-      <button ng-click="killPerson($index)">Delete this Person</button>
+      <button ng-click="killPerson(person)">Delete this Person</button>
     </div>
     <ul>
       <li ng-repeat="error in errors">{{ error }}</li>
