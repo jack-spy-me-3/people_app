@@ -1,7 +1,11 @@
 <div ng-app="app">
   <div ng-controller="peopleCtrl" ng-init="setup()">
-    <h1>Number of Awesome: {{ people.length }}</h1>
-    <input ng-model="filterName">
+    <h1 class="animated hinge">Number of Awesome: {{ people.length }}</h1>
+    <datalist id="names">
+      <option ng-repeat="person in people">{{ person.name }}</option>
+    </datalist>
+
+    <input ng-model="filterName" list="names">
     <input ng-model="filterBio">
 <!--     <div>
       <button>Order By Name</button>
@@ -9,7 +13,7 @@
     </div> -->
     <table>
       <tr>
-        <th ng-click="toggleOrder('name')">Name {{ sortArrow('name')}}</th>
+        <th class="animated slideInLeft" ng-click="toggleOrder('name')">Name {{ sortArrow('name')}}</th>
         <th ng-click="toggleOrder('bio')">Bio {{ sortArrow('bio')}}</th>
         <th>Update</th>
       </tr>
