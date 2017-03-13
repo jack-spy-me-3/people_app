@@ -4,7 +4,7 @@ class Api::V1::PeopleController < ApplicationController
   end
 
   def create
-    @person = Person.new(name: params[:name], bio: params[:bio])
+    @person = Person.new(name: params[:name], bio: params[:bio], age: params[:age])
     if @person.save
       render "show.json.jbuilder"
     else
@@ -16,6 +16,7 @@ class Api::V1::PeopleController < ApplicationController
     @person = Person.find_by(id: params[:id])
     @person.name = params[:name] || @person.name
     @person.bio = params[:bio] || @person.bio
+    @person.age = params[:age] || @person.age
     if @person.save
       render "show.json.jbuilder"
     else

@@ -15,11 +15,13 @@
       <tr>
         <th class="animated slideInLeft" ng-click="toggleOrder('name')">Name {{ sortArrow('name')}}</th>
         <th ng-click="toggleOrder('bio')">Bio {{ sortArrow('bio')}}</th>
+        <th>Age</th>
         <th>Update</th>
       </tr>
       <tr ng-repeat="person in people | filter: { name: filterName, bio: filterBio } | orderBy:orderAttribute:isDescending">
         <td>{{ person.name }}</td>
         <td>{{ person.bio }}</td>
+        <td>{{ person.age }}</td>
         <td>
           <button ng-click="killPerson(person)">Kill this Person</button>
           <p>Name: <input ng-model="updateName"></p>
@@ -38,6 +40,7 @@
     </ul>
     <p>Name: <input ng-model="inputName"></p>
     <p>Bio: <input ng-model="inputBio"></p>
-    <button ng-click="addPerson(inputName, inputBio)">Add Person</button>
+    <p>Age: <input ng-model="inputAge"></p>
+    <button ng-click="addPerson(inputName, inputBio, inputAge)">Add Person</button>
   </div>
 </div>
