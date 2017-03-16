@@ -1,6 +1,7 @@
 <div ng-app="app">
   <div ng-controller="peopleCtrl" ng-init="setup()">
     <h1 class="animated hinge">Number of Awesome: {{ people.length }}</h1>
+    <jack-spy-me-3></jack-spy-me-3>
     <datalist id="names">
       <option ng-repeat="person in people">{{ person.name }}</option>
     </datalist>
@@ -18,7 +19,7 @@
         <th>Age</th>
         <th>Update</th>
       </tr>
-      <tr ng-repeat="person in people | filter: { name: filterName, bio: filterBio } | orderBy:orderAttribute:isDescending">
+      <tr ng-repeat="person in people | ageFilter | orderBy:orderAttribute:isDescending">
         <td>{{ person.name }}</td>
         <td>{{ person.bio }}</td>
         <td>{{ person.age }}</td>
