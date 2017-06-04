@@ -1,4 +1,4 @@
-angular.module("app").filter("ageFilter", [function() {
+angular.module("ageSorter", []).filter("ageFilter", [function() {
   return function(array) {
     if (array) {
       var children = [];

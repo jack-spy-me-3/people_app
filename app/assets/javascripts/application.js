@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-animate
+//= require age_filter
 //= require angular-rails-templates
 //= require_tree ./templates
 //= require app
